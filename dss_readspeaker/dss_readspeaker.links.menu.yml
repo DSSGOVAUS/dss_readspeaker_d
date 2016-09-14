@@ -1,0 +1,6 @@
+dss_readspeaker.settings:
+  title: 'DSS Readspeaker'
+  description: 'Configuration for the DSS ReadSpeaker Block module'
+  parent: system.admin_config_services
+  route_name: dss_readspeaker.settings
+  weight: 100

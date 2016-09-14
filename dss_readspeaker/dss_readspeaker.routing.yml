@@ -1,0 +1,6 @@
+dss_readspeaker.settings:
+  path: 'admin/config/services/dss-readspeaker'
+  defaults:
+    _form: '\Drupal\dss_readspeaker\Form\SettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

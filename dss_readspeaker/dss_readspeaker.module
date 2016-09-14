@@ -1,0 +1,29 @@
+<?php
+/**
+ * Implements hook_library_info_alter().
+ */
+use Drupal\Core\Url;
+   
+function dss_readspeaker_library_info_alter(&$libraries, $extension) {
+  //Get Config vals
+  $config = \Drupal::config('dss_readspeaker.credentials');  
+  $customerid = $config->get('customerid');
+  $region = $config->get('region').'.';
+  $rscompact = $config->get('rscompact');
+  $rshttps = $config->get('rshttps');
+
+  $query = array('pids' => 'embhl');
+  if ($rscompact == true) $query['skin'] = 'ReadSpeakerCompactSkin';
+
+  if ($rshttps == true) {
+    // Locally host the script for https 
+    $params = \Drupal\Core\Url::fromUserInput('?',array('query' => $query))->toString();  
+    $libraries['dss-readspeaker']['js']['ReadSpeaker.js'.$params] = array(); 
+  }
+  else {
+    // Use ReadSpeaker's CDN version
+    $url = \Drupal\Core\Url::fromUri('http://f1.'.$region.'readspeaker.com/script/'. $customerid.'/ReadSpeaker.js', array('query' => $query, 'absolute' => TRUE))->toString();
+    $libraries['dss-readspeaker']['js'][$url] = array('type' => 'external');
+  }
+  return $libraries;
+}
