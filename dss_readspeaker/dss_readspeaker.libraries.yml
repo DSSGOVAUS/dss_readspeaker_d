@@ -1,9 +1,2 @@
 dss-readspeaker:
   js: {}
-dss-readspeaker.custom:
-  version: 1
-  js:
-    custom/dss_readspeaker.js: {}
-  css:
-    theme:
-      custom/dss_readspeaker.css: {}
