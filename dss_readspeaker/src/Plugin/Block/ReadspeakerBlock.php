@@ -43,7 +43,7 @@ class ReadspeakerBlock extends BlockBase {
 
     // Cache the block to the 'Per URL path' context
     $build['#cache'] = array(
-      'contexts' => array('url.path'),
+      'contexts' => array('url.path', 'url.query_args'),
     );
 
     // Return it
