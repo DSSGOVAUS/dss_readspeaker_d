@@ -26,9 +26,6 @@ class ReadspeakerBlock extends BlockBase {
     $rslang = $config->get('rslang');
     $region = $config->get('region');
 
-    // Add the library
-    $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker';
-
     // Is it http or https?
     $proto = 'http';
     if (isset($_SERVER['HTTPS'])) {
@@ -39,8 +36,17 @@ class ReadspeakerBlock extends BlockBase {
     $output = '<div id="readspeaker_button" class="rs_skip rsbtn rs_preserve">';
     $output .= '<a rel="nofollow" class="rsbtn_play" href="'.$proto.'://app-'.$region.'.readspeaker.com/cgi-bin/rsent?customerid='.$customerid.'&amp;lang='.$rslang.'&amp;readid='.$readid.'&amp;url='.$proto.'://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'">';
     $output .= '<span class="rsbtn_left rspart rsimg"><span class="rsbtn_text"><span>Listen</span></span></span><span class="rsbtn_right rsimg rsplay rspart"></span></a></div>';
-
     $build['#markup'] = $output;
+
+    // Add the library
+    $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker';
+
+    // Cache the block to the 'Per URL path' context
+    $build['#cache'] = array(
+      'contexts' => array('url.path'),
+    );
+
+    // Return it
 	  return $build;
   }
 }
