@@ -23,8 +23,6 @@ class ReadspeakerBlock extends BlockBase {
 
     $customerid = $config->get('customerid');
     $readid = $config->get('readid');
-    $rslang = $config->get('rslang');
-    $region = $config->get('region');
 
     // Is it http or https?
     $proto = 'http';
@@ -34,7 +32,7 @@ class ReadspeakerBlock extends BlockBase {
 
     // Build Readspeaker code
     $output = '<div id="readspeaker_button" class="rs_skip rsbtn rs_preserve">';
-    $output .= '<a rel="nofollow" class="rsbtn_play" href="'.$proto.'://app-'.$region.'.readspeaker.com/cgi-bin/rsent?customerid='.$customerid.'&amp;lang='.$rslang.'&amp;readid='.$readid.'&amp;url='.$proto.'://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'">';
+    $output .= '<a rel="nofollow" class="rsbtn_play" href="//app-oc.readspeaker.com/cgi-bin/rsent?customerid='.$customerid.'&amp;lang=en-au&amp;readid='.$readid.'&amp;url='.$proto.'://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'">';
     $output .= '<span class="rsbtn_left rspart rsimg"><span class="rsbtn_text"><span>Listen</span></span></span><span class="rsbtn_right rsimg rsplay rspart"></span></a></div>';
     $build['#markup'] = $output;
 

@@ -49,23 +49,7 @@ class SettingsForm extends ConfigFormBase {
 			'#size' => 32,
 			'#maxlength' => 32,
 		);
-		$form['general']['rslang'] = array(
-			'#type' => 'textfield',
-			'#title' => t('Language'),
-			'#default_value' => $config->get('rslang'),
-			'#description' => t("Document language"),
-			'#size' => 5,
-			'#maxlength' => 5,
-		);
-		$form['general']['region'] =  array(
-			'#type' => 'textfield',
-			'#title' => t('Region'),
-			'#default_value' => $config->get('region'),
-			'#description' => t("ReadSpeaker Region"),
-			'#size' => 2,
-			'#maxlength' => 2,
-		);
-    	return parent::buildForm($form, $form_state);
+		return parent::buildForm($form, $form_state);
 	}
 
   //Save new values on Form Submit
@@ -74,8 +58,6 @@ class SettingsForm extends ConfigFormBase {
     $this->config('dss_readspeaker.credentials')
 		->set('customerid', $form_state->getValue(array('general', 'customerid')))
 		->set('readid', $form_state->getValue(array('general', 'readid')))
-		->set('rslang', $form_state->getValue(array('general', 'rslang')))
-		->set('region', $form_state->getValue(array('general', 'region')))
     ->save();
     parent::submitForm($form, $form_state);
   }

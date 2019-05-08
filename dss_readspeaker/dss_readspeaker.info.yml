@@ -1,8 +1,9 @@
 name: DSS ReadSpeaker Block
 type: module
-description: "Adds a Readspeaker 'Listen' button as a customisable block. Suports https://"
+description: "Adds a Readspeaker 'Listen' button as a customisable block."
 package: DSS
 core: 8.x
 configure: dss_readspeaker.settings
 dependencies:
   - block
+ 

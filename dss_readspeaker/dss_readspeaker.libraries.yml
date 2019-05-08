@@ -1,2 +1,3 @@
 dss-readspeaker:
-  js: {}
+  js:
+    js/rsconf.js: {}
