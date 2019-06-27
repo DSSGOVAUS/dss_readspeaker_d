@@ -10,6 +10,12 @@ function dss_readspeaker_library_info_alter(&$libraries, $extension) {
   $customerid = $config->get('customerid');
   $query = array('pids' => 'wr', 'notools' => 1);
 
+  // Option to disable the pop up player
+  $popupplayer = $config->get('popupplayer');
+  if (!$popupplayer) {
+    $query['disable'] = 'popupplayback';
+  }
+
   // Is it http or https?
   $proto = 'http';
   if (isset($_SERVER['HTTPS'])) {

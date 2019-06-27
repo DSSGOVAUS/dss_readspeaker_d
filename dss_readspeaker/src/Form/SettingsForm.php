@@ -49,6 +49,12 @@ class SettingsForm extends ConfigFormBase {
 			'#size' => 32,
 			'#maxlength' => 32,
 		);
+    $form['general']['popupplayer'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable pop-up player'),
+      '#default_value' => $config->get('popupplayer'),
+      '#description' => t("Display the pop-up player on text highlight"),
+    );
 		return parent::buildForm($form, $form_state);
 	}
 
@@ -58,6 +64,7 @@ class SettingsForm extends ConfigFormBase {
     $this->config('dss_readspeaker.credentials')
 		->set('customerid', $form_state->getValue(array('general', 'customerid')))
 		->set('readid', $form_state->getValue(array('general', 'readid')))
+    ->set('popupplayer', $form_state->getValue(array('general', 'popupplayer')))
     ->save();
     parent::submitForm($form, $form_state);
   }
