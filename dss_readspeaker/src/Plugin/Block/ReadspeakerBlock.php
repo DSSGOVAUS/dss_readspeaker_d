@@ -31,8 +31,9 @@ class ReadspeakerBlock extends BlockBase {
     }
 
     // Build Readspeaker code
+    $readurl = htmlspecialchars(strip_tags($proto . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']));
     $output = '<div id="readspeaker_button" class="rs_skip rsbtn rs_preserve">';
-    $output .= '<a rel="nofollow" class="rsbtn_play" href="//app-oc.readspeaker.com/cgi-bin/rsent?customerid='.$customerid.'&amp;lang=en-au&amp;readid='.$readid.'&amp;url='.$proto.'://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'">';
+    $output .= '<a rel="nofollow" class="rsbtn_play" href="//app-oc.readspeaker.com/cgi-bin/rsent?customerid='.$customerid.'&amp;lang=en-au&amp;readid='.$readid.'&amp;url='.$readurl.'">';
     $output .= '<span class="rsbtn_left rspart rsimg"><span class="rsbtn_text"><span>Listen</span></span></span><span class="rsbtn_right rsimg rsplay rspart"></span></a></div>';
     $build['#markup'] = $output;
 
