@@ -17,7 +17,11 @@ In your composer file add this to the repositories array:
 
 Finally you just need to add the package to your composer require array:
 
-`"require": { "dss/dss_readspeaker": "master" }`
+```
+"require": { 
+    "dss/dss_readspeaker": "master" 
+}
+```
 
 ### Note
 
