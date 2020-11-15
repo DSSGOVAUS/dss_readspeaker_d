@@ -1,5 +1,5 @@
 {
-  "name": "dss/dss_readspeaker_d8",
+  "name": "dss/dss_readspeaker",
   "description": "Adds a Readspeaker 'Listen' button as a customisable block.",
   "type": "drupal-module",
   "authors": [
