@@ -11,7 +11,7 @@ In your composer file add this to the repositories array:
 ```
 {
     "type": "vcs",
-    "url": "git@github.com:DSSGOVAUS/dss_readspeaker_d8.git"
+    "url": "git@github.com:DSSGOVAUS/dss_readspeaker_d.git"
 }
 ```
 
