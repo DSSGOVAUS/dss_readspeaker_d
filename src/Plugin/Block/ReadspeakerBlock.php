@@ -33,17 +33,17 @@ class ReadspeakerBlock extends BlockBase {
 
     // Prepare the rsConf for drupalSettings
     $rsconf = [
-      'ui' => array(
-        'tools' => array(
+      'ui' => [
+        'tools' => [
           'translation' => false, // Prevent from displaying Google translations
           'dictionary' => false, // Prevent from displaying a dictionary look up option
-        )
-      )
+        ]
+      ]
     ];
-    if ($postrender) {
-      $rsconf['general'] = array(
-        'usePost' => true, // For if this website uses JavaScript to build/modify the UI client-side
-      );
+    if ($postrender) { // For if this website uses JavaScript to build/modify the UI client-side
+      $rsconf['general'] = [
+        'usePost' => true,
+      ];
     }
 
     // Build Readspeaker code
@@ -59,9 +59,9 @@ class ReadspeakerBlock extends BlockBase {
     $build['#attached']['drupalSettings']['window.rsConf'] = $rsconf;
 
     // Cache the block to the 'Per URL path' context
-    $build['#cache'] = array(
-      'contexts' => array('url.path', 'url.query_args'),
-    );
+    $build['#cache'] = [
+      'contexts' => ['url.path', 'url.query_args'],
+    ];
 
     // Return it
 	  return $build;
