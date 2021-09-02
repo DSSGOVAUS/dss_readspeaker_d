@@ -23,11 +23,27 @@ class ReadspeakerBlock extends BlockBase {
 
     $customerid = $config->get('customerid');
     $readid = $config->get('readid');
+    $postrender = $config->get('postrender');
 
     // Is it http or https?
     $proto = 'http';
     if (isset($_SERVER['HTTPS'])) {
       if ($_SERVER['HTTPS'] != '') $proto = 'https';
+    }
+
+    // Prepare the rsConf for drupalSettings
+    $rsconf = [
+      'ui' => [
+        'tools' => [
+          'translation' => false, // Prevent from displaying Google translations
+          'dictionary' => false, // Prevent from displaying a dictionary look up option
+        ]
+      ]
+    ];
+    if ($postrender) { // For if this website uses JavaScript to build/modify the UI client-side
+      $rsconf['general'] = [
+        'usePost' => true,
+      ];
     }
 
     // Build Readspeaker code
@@ -38,13 +54,14 @@ class ReadspeakerBlock extends BlockBase {
     $output .= '<span class="rsbtn_right rsimg rsplay rspart"></span></a></div>';
     $build['#markup'] = $output;
 
-    // Add the library
+    // Add the libraries
     $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker';
+    $build['#attached']['drupalSettings']['window.rsConf'] = $rsconf;
 
     // Cache the block to the 'Per URL path' context
-    $build['#cache'] = array(
-      'contexts' => array('url.path', 'url.query_args'),
-    );
+    $build['#cache'] = [
+      'contexts' => ['url.path', 'url.query_args'],
+    ];
 
     // Return it
 	  return $build;
