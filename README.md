@@ -1,4 +1,4 @@
-# DSS ReadSpeaker Block, Drupal 8 Version
+# DSS ReadSpeaker Block, Drupal 8/9+ Version
 Adds a ReadSpeaker 'Listen' button as a customisable block.
 
 ## Dependencies
@@ -19,7 +19,7 @@ Finally you just need to add the package to your composer require array:
 
 ```
 "require": { 
-    "dssgovau/dss_readspeaker": "master" 
+    "dssgovau/dss_readspeaker": "^1.0" 
 }
 ```
 
