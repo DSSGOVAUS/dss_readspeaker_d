@@ -17,7 +17,7 @@ class ReadspeakerBlock extends BlockBase {
   */
   public function build() {
 
-    $build = array();
+    $build = [];
     //Get Config vals
     $config = \Drupal::config('dss_readspeaker.credentials');
 
@@ -31,21 +31,6 @@ class ReadspeakerBlock extends BlockBase {
       if ($_SERVER['HTTPS'] != '') $proto = 'https';
     }
 
-    // Prepare the rsConf for drupalSettings
-    $rsconf = [
-      'ui' => [
-        'tools' => [
-          'translation' => false, // Prevent from displaying Google translations
-          'dictionary' => false, // Prevent from displaying a dictionary look up option
-        ]
-      ]
-    ];
-    if ($postrender) { // For if this website uses JavaScript to build/modify the UI client-side
-      $rsconf['general'] = [
-        'usePost' => true,
-      ];
-    }
-
     // Build Readspeaker code
     $readurl = htmlspecialchars(strip_tags($proto . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']));
     $output = '<div id="readspeaker_button" class="rs_skip rsbtn rs_preserve">';
@@ -56,7 +41,10 @@ class ReadspeakerBlock extends BlockBase {
 
     // Add the libraries
     $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker';
-    $build['#attached']['drupalSettings']['window.rsConf'] = $rsconf;
+
+    if ($postrender) { // For if this website uses JavaScript to build/modify the UI client-side
+      $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker-usepost';
+    }    
 
     // Cache the block to the 'Per URL path' context
     $build['#cache'] = [

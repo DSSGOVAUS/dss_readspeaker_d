@@ -18,7 +18,7 @@ class SettingsForm extends ConfigFormBase {
   }
 
   protected function getEditableConfigNames() {
-    return array('dss_readspeaker.credentials');
+    return ['dss_readspeaker.credentials'];
   }
 
   // Build the form
@@ -27,39 +27,39 @@ class SettingsForm extends ConfigFormBase {
     $config = $this->config('dss_readspeaker.credentials');
 
 	// General Options Fieldset
-	$form['general'] = array(
+	$form['general'] = [
 		'#type' => 'fieldset',
 		'#title' => t('General Options'),
 		'#tree' => TRUE,
-	);
-	$form['general']['customerid'] = array(
+	];
+	$form['general']['customerid'] = [
 		'#type' => 'textfield',
 		'#title' => t('Customer ID'),
 		'#default_value' => $config->get('customerid'),
 		'#description' => t("Your ReadSpeaker Cutomer ID"),
 		'#size' => 4,
 		'#maxlength' => 4,
-	);
-	$form['general']['readid'] = array(
+	];
+	$form['general']['readid'] = [
 		'#type' => 'textfield',
 		'#title' => t('Read ID'),
 		'#default_value' => $config->get('readid'),
 		'#description' => t("The ID of the page element to be read"),
 		'#size' => 32,
 		'#maxlength' => 32,
-	);
-	$form['general']['postrender'] = array(
+	];
+	$form['general']['postrender'] = [
 		'#type' => 'checkbox',
 		'#title' => t('Enable reading after the DOM render'),
 		'#default_value' => $config->get('postrender'),
 		'#description' => t("For if this website uses JavaScript to build/modify the UI client-side"),
-	);
-    $form['general']['popupplayer'] = array(
+	];
+    $form['general']['popupplayer'] = [
       '#type' => 'checkbox',
       '#title' => t('Enable pop-up player'),
       '#default_value' => $config->get('popupplayer'),
       '#description' => t("Display the pop-up player on text highlight"),
-    );
+	];
 	return parent::buildForm($form, $form_state);
 	}
 
