@@ -1,6 +1,6 @@
-dss-readspeaker:
-  js:
-    js/rsconf.js: {}
-dss-readspeaker-usepost:
+dss-readspeaker-post:
   js:
     js/rsconf_post.js: {}
+dss-readspeaker-nopost:
+  js:
+    js/rsconf_nopost.js: {}

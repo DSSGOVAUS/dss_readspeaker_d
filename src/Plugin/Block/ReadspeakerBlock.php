@@ -40,12 +40,9 @@ class ReadspeakerBlock extends BlockBase {
     $build['#markup'] = $output;
 
     // Add the libraries
-    $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker';
-
-    if ($postrender) { // For if this website uses JavaScript to build/modify the UI client-side
-      $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker-usepost';
-    }    
-
+    if ($postrender) $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker-post';
+    else $build['#attached']['library'][] = 'dss_readspeaker/dss-readspeaker-nopost';
+    
     // Cache the block to the 'Per URL path' context
     $build['#cache'] = [
       'contexts' => ['url.path', 'url.query_args'],

@@ -9,6 +9,7 @@ function dss_readspeaker_library_info_alter(&$libraries, $extension) {
   $config = \Drupal::config('dss_readspeaker.credentials');
   $customerid = $config->get('customerid');
   $query = ['pids' => 'wr', 'notools' => 1];
+  $postrender = $config->get('postrender');
 
   // Option to disable the pop up player
   $popupplayer = $config->get('popupplayer');
@@ -24,7 +25,8 @@ function dss_readspeaker_library_info_alter(&$libraries, $extension) {
 
   // Library in ReadSpeaker's script from CDN
   $url = \Drupal\Core\Url::fromUri($proto.'://cdn1.readspeaker.com/script/'. $customerid.'/webReader/webReader.js', ['query' => $query, 'absolute' => TRUE])->toString();
-  $libraries['dss-readspeaker']['js'][$url] = ['type' => 'external'];
+  if ($postrender) $libraries['dss-readspeaker-post']['js'][$url] = ['type' => 'external'];
+  else $libraries['dss-readspeaker-nopost']['js'][$url] = ['type' => 'external'];
 
   return $libraries;
 }
