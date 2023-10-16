@@ -3,7 +3,7 @@ type: module
 description: "Adds a Readspeaker 'Listen' button as a customisable block."
 package: DSS
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9 || ^10
 configure: dss_readspeaker.settings
 dependencies:
   - block
